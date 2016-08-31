@@ -17,23 +17,22 @@ class BookViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         imagePicker.delegate = self
-        
     }
     
     @IBAction func photosTapped(_ sender: AnyObject) {
         imagePicker.sourceType = .photoLibrary
-        
         present(imagePicker, animated: true, completion: nil)
     }
+    
     // Info about what has been selected also an info dictionary.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         bookImageView.image = image
         imagePicker.dismiss(animated: true, completion: nil)
     }
+    
     @IBAction func cameraTapped(_ sender: AnyObject) {
         
     }
@@ -41,11 +40,11 @@ class BookViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     @IBAction func addTapped(_ sender: AnyObject) {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let book = Book(context: context)
-       
         book.title = titleTextField.text
-        book.image = UIImagePNGRepresentation(bookImageView.image!)
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()   
-        
+        // Next line is problem
+        book.image = NSData(data:UIImagePNGRepresentation(bookImageView.image!)!)
+        //book.image = UIImagePNGRepresentation(bookImageView.image!)
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        navigationController!.popViewController(animated: true)
     }
-
 }
