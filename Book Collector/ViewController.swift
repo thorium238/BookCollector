@@ -45,5 +45,21 @@ class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         cell.imageView?.image = UIImage(data: book.image as! Data)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let book = books[indexPath.row]
+        print("do segue back")
+        performSegue(withIdentifier: "bookSegue", sender: book)
+        print("did segue back")
+    }
+    
+    /** Pass whatever is inside of send on to next view controller **/
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(" before let")
+        // Do I understand these next two lines?
+        let nextVC = segue.destination as! BookViewController
+        nextVC.book = sender as? Book // ****
+        print(" after nextVC")
+    }
 }
 

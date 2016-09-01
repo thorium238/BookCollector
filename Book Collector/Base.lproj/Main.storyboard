@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="F4B-r6-YgY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jQx-Mx-9hb">
                             <connections>
-                                <segue destination="ENS-3f-kOu" kind="show" id="upa-nY-p3D"/>
+                                <segue destination="ENS-3f-kOu" kind="show" identifier="bookSegue" id="upa-nY-p3D"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -64,15 +64,23 @@
                                     <constraint firstAttribute="height" constant="200" id="wCQ-dy-O2D"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tile of Book" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1a6-Sk-vKE" userLabel="Book Title">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Title of Book" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1a6-Sk-vKE" userLabel="Book Title">
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wi-LY-KUZ">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8wi-LY-KUZ">
+                                <frame key="frameInset" minX="295" minY="74" width="30" height="30"/>
                                 <state key="normal" title="Add"/>
                                 <connections>
                                     <action selector="addTapped:" destination="ENS-3f-kOu" eventType="touchUpInside" id="GTE-D3-aN2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4e9-sc-mip" userLabel="Delete Button">
+                                <frame key="frameInset" minX="296" minY="125" width="30" height="30"/>
+                                <state key="normal" title="Del"/>
+                                <connections>
+                                    <action selector="deleteTapped:" destination="ENS-3f-kOu" eventType="touchUpInside" id="Zld-iI-AYN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -81,7 +89,9 @@
                             <constraint firstItem="6PL-vJ-7jZ" firstAttribute="top" secondItem="smD-Zx-EnF" secondAttribute="bottom" constant="10" id="2Tk-7K-rwx"/>
                             <constraint firstItem="1a6-Sk-vKE" firstAttribute="width" secondItem="6PL-vJ-7jZ" secondAttribute="width" id="2Tz-Wb-NNF"/>
                             <constraint firstItem="1a6-Sk-vKE" firstAttribute="top" secondItem="6PL-vJ-7jZ" secondAttribute="bottom" constant="5" id="5L7-Bh-2C1"/>
-                            <constraint firstItem="8wi-LY-KUZ" firstAttribute="top" secondItem="smD-Zx-EnF" secondAttribute="bottom" constant="10" id="7r4-Jd-pky"/>
+                            <constraint firstItem="4e9-sc-mip" firstAttribute="leading" secondItem="6PL-vJ-7jZ" secondAttribute="trailing" constant="20" id="6mc-3B-AMG"/>
+                            <constraint firstItem="4e9-sc-mip" firstAttribute="top" secondItem="8wi-LY-KUZ" secondAttribute="bottom" constant="15" id="JPW-sn-J6Q"/>
+                            <constraint firstItem="8wi-LY-KUZ" firstAttribute="top" secondItem="smD-Zx-EnF" secondAttribute="bottom" constant="10" id="KrB-wl-6i3"/>
                             <constraint firstItem="1a6-Sk-vKE" firstAttribute="centerX" secondItem="fDI-kc-4rh" secondAttribute="centerX" id="UDb-cy-qaP"/>
                             <constraint firstItem="6PL-vJ-7jZ" firstAttribute="centerX" secondItem="fDI-kc-4rh" secondAttribute="centerX" id="YFx-ug-5bv"/>
                             <constraint firstItem="8wi-LY-KUZ" firstAttribute="leading" secondItem="6PL-vJ-7jZ" secondAttribute="trailing" constant="20" id="jcm-EF-xkG"/>
@@ -102,7 +112,9 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="addUpdateButton" destination="8wi-LY-KUZ" id="2ZD-eh-ro3"/>
                         <outlet property="bookImageView" destination="6PL-vJ-7jZ" id="eHo-7U-Cln"/>
+                        <outlet property="deleteButton" destination="4e9-sc-mip" id="9MY-0s-z8O"/>
                         <outlet property="titleTextField" destination="1a6-Sk-vKE" id="T2E-wV-co5"/>
                     </connections>
                 </viewController>
